@@ -1,0 +1,16 @@
+.entry {
+  font-family: monospace;
+  font-size: 1rem;
+  padding-left: 2px;
+  border-left: 1px dashed lightgray;
+}
+
+.collapsedPlaceholder {
+  color: grey;
+  font-style: italic;
+}
+
+.entry:hover {
+  border-left: 1px solid gray;
+}
+

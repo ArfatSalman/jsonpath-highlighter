@@ -1,0 +1,21 @@
+/* https://codepen.io/FelixRilling/pen/qzfoc */
+
+@keyframes blue {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 20px #228DFF, 0 0 10px #228DFF, 0 0 10px #228DFF, 0 0 10px #228DFF, 0 0 15px #228DFF;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 20px #228DFF, 0 0 10px #228DFF, 0 0 5px #228DFF, 0 0 5px #228DFF, 0 0 10px #228DFF;
+  }
+}
+
+.container {
+  /* color: #228DFF; */
+  transition: all 0.5s;
+  text-decoration: none;
+}
+
+.container:hover {
+  animation: blue 0.5s ease-in-out infinite alternate;
+  color: #ffffff;
+}

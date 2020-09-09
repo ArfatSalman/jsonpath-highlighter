@@ -1,0 +1,24 @@
+.value {
+  margin-left: 5px;
+  /* background-color: aqua; */
+}
+
+.stringStyle {
+  color: darkgreen;
+}
+
+.numberStyle {
+  color: maroon;
+}
+
+.booleanStyle {
+  color: blue;
+}
+
+.nullStyle {
+  color: red;
+}
+
+.objectPlaceholder {
+  font-style: italic;
+}

@@ -1,0 +1,17 @@
+.matchStatus {
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+  font-weight: bold;
+}
+
+.error {
+  color: #dc3545;
+}
+
+.info {
+  color: blue;
+}
+
+.match {
+  color: green;
+}

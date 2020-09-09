@@ -1,0 +1,25 @@
+.file {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed lightgrey;
+  /* background: aliceblue; */
+  margin-top: 10px;
+  padding: 2px;
+  margin-bottom: 10px;
+}
+
+.file label {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.file input[type="file"] {
+  width: 0;
+  height: 0;
+}
+
+.file div {
+  color: red;
+}
