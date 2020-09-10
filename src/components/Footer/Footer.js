@@ -1,9 +1,11 @@
 import React from 'react'
 import styles from './Footer.module.css';
+import cn from 'classnames';
 
 function Footer(props) {
-  const { children } = props;
-  return <footer className={styles.footer}>{children}</footer>
+  const { children, className } = props;
+  const classNames = cn(styles.footer, className);
+  return <footer className={classNames}>{children}</footer>
 }
 
 export default Footer;

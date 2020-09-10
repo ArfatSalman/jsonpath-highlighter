@@ -9,6 +9,14 @@ import reducer from '../../data/reducers';
 import fixtureData from './fixtureData';
 import { setJSONAndPathExpression } from '../../data/actions';
 
+jest.mock('react-virtualized-auto-sizer', () => {
+  return (props) => {
+    return props.children({ width: 900, height: 900 });
+  };
+});
+
+jest.mock('lodash/debounce', () => jest.fn((fn) => fn));
+
 function render(ui, { store, ...renderOptions } = {}) {
   function Wrapper({ children }) {
     return <Provider store={store}>{children}</Provider>;
@@ -20,11 +28,12 @@ function createFixture(props) {
   const store = createStore(reducer);
   // Initialize the store
   store.dispatch(setJSONAndPathExpression(fixtureData, '$..*'));
+
   return render(
-    <>
+    <div style={{ height: '800px' }}>
       <PathExpressionInput />
       <JSONPath />
-    </>,
+    </div>,
     { store }
   );
 }

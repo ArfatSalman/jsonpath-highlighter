@@ -23,29 +23,29 @@ function App(props) {
       <Header />
       <Container fluid>
         <Row style={{ height: `calc(100vh - 95px)` }}>
-          <Col className={'text-light'} style={{ backgroundColor: '#343a40'}} md={2}>
-            <div>
-              <h5>
-                {' '}
-                <FolderIcon width={'20px'} height={'20px'} /> Data Source
-              </h5>
-              <FromUrl />
-              <Form>
-                <Form.Text as="span">From File</Form.Text>
-                <DataFromFile />
-              </Form>
-              <label>Manual</label>
-              <Button block size="sm" variant={'light'}>
-                Enter Data
-              </Button>
-            </div>
+          <Col
+            className={'text-light'}
+            style={{ backgroundColor: '#343a40' }}
+            md={2}
+          >
+            <h5>
+              {' '}
+              <FolderIcon width={'20px'} height={'20px'} /> Data Source
+            </h5>
+            <FromUrl />
+            <Form>
+              <Form.Text as="span">From File</Form.Text>
+              <DataFromFile />
+            </Form>
+            <label>Manual</label>
+            <Button block size="sm" variant={'light'}>
+              Enter Data
+            </Button>
             <hr />
-            <div>
-              <h5>
-                <SettingsIcon width={'24px'} height={'24px'} /> Settings
-              </h5>
-              <Settings />
-            </div>
+            <h5>
+              <SettingsIcon width={'24px'} height={'24px'} /> Settings
+            </h5>
+            <Settings />
           </Col>
 
           <Col
@@ -54,24 +54,24 @@ function App(props) {
               height: '100%',
               display: 'flex',
               flexFlow: 'column',
-              // background: 'grey',
             }}
           >
             <PathExpressionInput />
             <JSONPathHighlighter />
           </Col>
           <Col
-            style={{ height: '100%', display: 'flex', flexFlow: 'column' }}
+            style={{ maxHeight: '100%', display: 'flex', flexFlow: 'column' }}
             md={4}
           >
             <div className="d-flex align-items-center">
-              <h5 style={{margin: 0}}>Match Information</h5> <CopyToClipboard />
+              <h5 style={{ margin: 0 }}>Match Information</h5>{' '}
+              <CopyToClipboard />
             </div>
             <MatchedPaths />
           </Col>
         </Row>
       </Container>
-      <Footer>
+      <Footer className="fixed-bottom">
         <a className="text-reset" href="mailto:giney.paradis@gmail.com">
           <span aria-label="contact" role="img">
             ✉️

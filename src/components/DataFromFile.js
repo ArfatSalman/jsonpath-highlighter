@@ -19,7 +19,6 @@ function DataFromFile(props) {
         setIsLoading(true);
         try {
           const data = await readFileAsJSON(event.target.files.item(0));
-          console.log(data);
           setJSONData(data);
           setFileError(false);
         } catch (ex) {

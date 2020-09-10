@@ -1,62 +1,53 @@
-import React, { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { toggleExpandKeys as toggleExpandKeysAction } from '../../../data/actions';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Key from '../Key';
 import Value from '../Value';
-import Collection from '../../Collection/Collection';
 import Checkbox from '../../Checkbox';
 import { isFullPath } from '../../../utils/jsonpath';
-import styles from './Entry.module.css';
+import classes from './Entry.module.css';
 
 function Separator(props) {
   return <span>:</span>;
 }
 
 function Entry(props) {
-  const { keyName, value, valueAs, keyAs, level, ...rest } = props;
+  const {
+    data: { isLeaf, keyName, value, id, nestingLevel },
+    isOpen,
+    style,
+    toggle,
+  } = props;
 
-  const fullPath = props.path;
-  const dispatch = useDispatch();
+  const fullPath = id;
 
   const highlightColor = useSelector((state) => state.settings.highlightColor);
-  const expandAll = useSelector((state) => state.settings.expandAll);
   const groupedPath = useSelector((state) => state.jsonData.groupedPath);
-  const expandedKeysStatus = useSelector((state) => Boolean(state.jsonData.expandedKeys[fullPath]));
 
-  const toggleExpandKeys = useCallback(
-    () => dispatch(toggleExpandKeysAction(fullPath)),
-    [dispatch, fullPath]
-  );
-
-  const isPlainObject = typeof value === 'object' && value !== null;
-  const isExpanded = expandAll || expandedKeysStatus;
   const isHighlighted = isFullPath(groupedPath, fullPath);
 
-  const KeyComponent = keyAs || Key;
-  const ValueComponent = valueAs || Value;
+  const KeyComponent = Key;
+  const ValueComponent = Value;
 
-  const style = React.useMemo(
-    () => ({
-      backgroundColor: isHighlighted ? highlightColor : '',
-    }),
-    [highlightColor, isHighlighted]
-  );
+  const styles = {
+    ...style,
+    paddingLeft: `${nestingLevel * 15}px`,
+    backgroundColor: isHighlighted ? highlightColor : '',
+    width: '100%',
+  };
 
   return (
-    <div style={style} className={styles.entry}>
-      {isPlainObject ? (
+    <div style={styles} className={classes.entry}>
+      {!isLeaf ? (
         <>
           <Checkbox
             id={fullPath}
-            checked={isExpanded}
+            checked={isOpen}
             data-testid={fullPath}
-            onChange={toggleExpandKeys}
+            onChange={toggle}
             label={<KeyComponent>{keyName}</KeyComponent>}
           />
-          {isExpanded ? (
-            <Collection {...rest} level={level + 1} data={value} />
-          ) : (
-            <span className={styles.collapsedPlaceholder}>
+          {isOpen ? null : (
+            <span className={classes.collapsedPlaceholder}>
               {Array.isArray(value)
                 ? ` [${value.length}]`
                 : ` {${Object.keys(value).length}}`}
@@ -74,4 +65,4 @@ function Entry(props) {
   );
 }
 
-export default React.memo(Entry);
+export default Entry;

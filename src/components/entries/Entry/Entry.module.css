@@ -2,7 +2,7 @@
   font-family: monospace;
   font-size: 1rem;
   padding-left: 2px;
-  border-left: 1px dashed lightgray;
+  border-left: 1px solid transparent;
 }
 
 .collapsedPlaceholder {

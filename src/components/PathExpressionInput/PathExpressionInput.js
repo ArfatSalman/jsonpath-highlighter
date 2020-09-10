@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import MatchStatus from '../MatchStatus';
 import { setJSONPathExpression } from '../../data/actions';
 import { isValidJSONPathExpression } from '../../utils/jsonpath';
+import useDebounce from '../../utils/custom-hooks/useDebounce';
 import styles from './PathExpressionInput.module.css';
 
 function PathExpressionInput(props) {
@@ -16,11 +17,18 @@ function PathExpressionInput(props) {
   const [jsonPath, setJsonPath] = React.useState(highlightedPath);
   const [isEmpty, setIsEmpty] = React.useState(false);
 
+  const dispatchSetJSONPathExpression = useDebounce(
+    (path) => dispatch(setJSONPathExpression(path)),
+    200
+  );
+
   return (
     <>
       <Form>
         <Form.Group style={{ marginBottom: 0 }} controlId="path">
-          <Form.Label><span className={styles.inputLabel}>JSONPath Expression</span></Form.Label>
+          <Form.Label>
+            <span className={styles.inputLabel}>JSONPath Expression</span>
+          </Form.Label>
           <Form.Control
             name="path"
             data-testid="jsonpath-input"
@@ -33,7 +41,8 @@ function PathExpressionInput(props) {
                 return;
               }
               if (isValidJSONPathExpression(path)) {
-                dispatch(setJSONPathExpression(path));
+                // dispatch(setJSONPathExpression(path));
+                dispatchSetJSONPathExpression(path);
                 setParseError(false);
               } else {
                 setParseError(true);

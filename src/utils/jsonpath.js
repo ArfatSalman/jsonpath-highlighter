@@ -25,6 +25,18 @@ export function groupPath(paths) {
   return result;
 }
 
+export function isPrefixPath(groupedPath, partialPath) {
+  const explodedPath = partialPath.split('.');
+  let ob = groupedPath;
+  for (const unit of explodedPath) {
+    if (ob[unit] === undefined) {
+      return false;
+    }
+    ob = ob[unit];
+  }
+  return true;
+}
+
 export function isFullPath(groupedPath, partialPath) {
   const path = partialPath.split('.');
   let ob = groupedPath;
